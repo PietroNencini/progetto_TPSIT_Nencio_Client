@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException{
@@ -15,19 +16,21 @@ public class Main {
         BufferedReader in = new BufferedReader(new InputStreamReader(myClientSocket.getInputStream()));
         DataOutputStream out = new DataOutputStream(myClientSocket.getOutputStream());
 
-        String sending_string = "Ciao server!";
-        out.writeBytes(sending_string + '\n');
+        Scanner s = new Scanner(System.in);
+        
+        String sending_string;
+        
+        while(!(sending_string = s.nextLine()).equals("!")) {
+            System.out.println("Stringa inviata: " + sending_string);
+            out.writeBytes(sending_string + '\n');
 
-        String edited_string = in.readLine();
+            String edited_string = in.readLine();
+            System.out.println("stringa modificata dal server: " + edited_string);
+        }
 
+        System.out.println("Il client ha terminato la comunicazione con successo!");
 
-        System.out.println("Il client si è collegato con successo!");
-        System.out.println("stringa modificata dal server: " + edited_string);
-
-
+        s.close();
         myClientSocket.close();
-
-
-
     }
 }
