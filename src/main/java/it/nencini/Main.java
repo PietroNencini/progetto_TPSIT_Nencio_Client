@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) throws IOException{
         System.out.println("Client pronto a collegarsi");
 
-        Socket myClientSocket = new Socket("localhost", 5763);      // localhost: 127.0.0.1
-
+        Socket myClientSocket = new Socket("localhost", 8647);      // localhost: 127.0.0.1
+		
         BufferedReader in = new BufferedReader(new InputStreamReader(myClientSocket.getInputStream()));
         DataOutputStream out = new DataOutputStream(myClientSocket.getOutputStream());
 
